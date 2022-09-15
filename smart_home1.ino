@@ -1,0 +1,46 @@
+
+
+#include <LiquidCrystal.h>
+
+
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+float a;
+int buttonState = 0;
+void setup() {
+  
+  lcd.begin(16, 2);
+   pinMode(6,OUTPUT);
+  pinMode(7, INPUT);
+  pinMode(LED_BUILTIN, OUTPUT);
+  
+  
+}
+
+void loop() {
+ 
+  
+  a=analogRead(1);
+  a=a*0.0048828125;
+  a=(a-0.5)*100;
+  lcd.clear();
+   lcd.setCursor(0, 0);
+  
+  lcd.print(a);
+  lcd.print("C");
+  if(a>50)
+  {
+    digitalWrite(6,HIGH);
+  }
+  else{
+    digitalWrite(6,LOW);
+  }
+  buttonState = digitalRead(7);
+   if (buttonState == HIGH) {
+    digitalWrite(LED_BUILTIN, HIGH);
+  } else {
+    digitalWrite(LED_BUILTIN, LOW);
+  }
+  delay(10); 
+ 
+}
+ 
