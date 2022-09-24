@@ -1,0 +1,14 @@
+import random
+temperature=random.randint(20,40)
+print("temperature is",(temperature))
+humidity=random.randint(20,40)
+print("humidity is",(humidity))
+if(temperature>30):
+    if(humidity>50):
+        print("alarm is detected")
+    else:
+        print("alarm detected for temperature")
+elif(temperature==30):
+    print("temperature reaches threshold")
+else:
+    print("alarm is not detected")
