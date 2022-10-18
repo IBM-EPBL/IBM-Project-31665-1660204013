@@ -1,0 +1,64 @@
+Name:Raja Ramya M
+Reg no:950819106064
+Question-1:
+Write a python code for blinking LED with Raspberry pi
+#!/usr/bin/env python
+import RPi.GPIO as GPIO # RPi.GPIO can be referred as GPIO from now
+import time
+ledPin = 22 # pin22
+def setup():
+GPIO.setmode(GPIO.BOARD) # GPIO Numbering of Pins
+GPIO.setup(ledPin, GPIO.OUT) # Set ledPin as output
+GPIO.output(ledPin, GPIO.LOW) # Set ledPin to LOW to turn Off
+the LED
+def loop():
+while True:
+print 'LED on'
+GPIO.output(ledPin, GPIO.HIGH) # LED On
+time.sleep(1.0 ) # wait 1 sec
+print 'LED off'
+GPIO.output(ledPin, GPIO.LOW) # LED Off
+time.sleep(1.0) # wait 1 sec
+def endprogram():
+GPIO.output(ledPin, GPIO.LOW) # LED Off
+GPIO.cleanup() # Release resources
+if_name_=='_main_': # Program starts from here
+setup()
+try:
+loop()
+except KeyboardInterrupt: # When 'Ctrl+C' is pressed, the destroy()
+will be executed.
+endprogram()
+Question-2:
+Write a python code for Traffic lights with Raspberry pi
+#!/usr/bin/python3.4
+import RPi.GPIO as GPIO
+import time
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+GPIO.setup(4, GPIO.IN, pull_up_down = GPIO.PUD_DOWN) # Button
+GPIO.setup(17, GPIO.OUT, initial = GPIO.HIGH) # RED
+GPIO.setup(27, GPIO.OUT, initial = GPIO.HIGH) # YELLOW
+GPIO.setup(18, GPIO.OUT, initial = GPIO.HIGH) # GREEN
+GPIO.setup(22, GPIO.OUT, initial = GPIO.LOW) # Buzzer
+x = 1 # Variable to control traffic light system
+try:
+while True:
+if(GPIO.input(4) == True):
+while(x == 1):
+GPIO.output(17, GPIO.LOW)
+GPIO.output(22, GPIO.HIGH)
+time.sleep(2)
+GPIO.output(22, GPIO.LOW)
+GPIO.output(27, GPIO.LOW)
+time.sleep(3)
+GPIO.output(17, GPIO.HIGH)
+GPIO.output(27,GPIO.HIGH)
+GPIO.output(18, GPIO.LOW)
+time.sleep(5)
+GPIO.output(18, GPIO.HIGH)
+time.sleep(2)
+except Exception as ex:
+print(“error occurred”,ex)
+finally:
+GPIO.cleanup()
